@@ -1,0 +1,31 @@
+{
+  "name": "gthouret/bff",
+  "description": "BFF: Fast and light PHP framework for getting things done",
+  "keywords": ["php", "framework", "fast", "light", "bff"],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/gthouret/bff/issues",
+    "source": "https://github.com/gthouret/bff"
+  },
+  "authors": [
+    {
+      "name": "Guy Thouret",
+      "email": "guy@thouret.uk"
+    }
+  ],
+  "require": {
+    "php" : ">=7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  },
+  "autoload": {
+    "psr-4": {
+      "BFF\\": "src/BFF/",
+      "BFF\\Test\\": "tests/BFF/"
+    },
+    "psr-0": {
+      "Afflib_": "lib/Afflib/"
+    }
+  }
+}
