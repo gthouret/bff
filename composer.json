@@ -14,7 +14,10 @@
     }
   ],
   "require": {
-    "php" : ">=7.0"
+    "php": ">=7.1",
+    "ext-memcached": "*",
+    "ext-pdo": "*",
+    "aura/sqlquery": "^2.7.1"
   },
   "require-dev": {
     "phpunit/phpunit": "^7"
@@ -23,9 +26,6 @@
     "psr-4": {
       "BFF\\": "src/BFF/",
       "BFF\\Test\\": "tests/BFF/"
-    },
-    "psr-0": {
-      "Afflib_": "lib/Afflib/"
     }
   }
 }
