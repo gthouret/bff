@@ -17,6 +17,7 @@
 
 ## Example Usage
 
+### Set an item to cache
 ```php
 use BFF\Services;
 
@@ -27,4 +28,45 @@ $user = [
 
 $cache = Services::cache();
 $cache->set('user-joebloggs', $user, Time::ONE_HOUR);
+```
+
+### Load custom app services
+```php
+use BFF\Registry;
+use BFF\Services as BffServices;
+
+namespace App;
+
+class Services extends BffServices {
+    const MYSERVICEA = 'myservicea';
+    const MYSERVICEB = 'myserviceb';
+    
+    public function myservicea() : MyServiceA
+    {
+        if (!Registry::isset(Services::MYSERVICEA)) {
+            $obj = new MyServiceA();
+            Registry::set(Services::MYSERVICEA, $obj);
+            return $obj;
+        } else {
+            return Registry::get(static::MYSERVICEA);
+        }
+    }
+    
+    public function myserviceb() : MyServiceB
+    {
+        if (!Registry::isset(Services::MYSERVICEB)) {
+            $obj = new MyServiceB();
+            Registry::set(Services::MYSERVICEB, $obj);
+            return $obj;
+        } else {
+            return Registry::get(static::MYSERVICEB);
+        }
+    }
+}
+```
+```php
+namespace App;
+
+$myservicea = Services::myservicea();
+$myservicea()->someAction();
 ```
