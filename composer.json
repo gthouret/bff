@@ -17,6 +17,10 @@
     "php": ">=7.1",
     "ext-memcached": "*",
     "ext-pdo": "*",
+    "ext-mysqli": "*",
+    "ext-json": "*",
+    "ext-redis": "*",
+    "ext-pcntl": "*",
     "aura/sqlquery": "^2.7.1"
   },
   "require-dev": {
