@@ -9,6 +9,8 @@
 
 **Registry** - A global, labelled, singleton object store
 
+**Services** - Istantiates singleton services into the registry on demand; Simple clean interface for accessing from anywhere
+
 **Text** - Useful text functions
 
 **Time** - Useful Time constants and functions
