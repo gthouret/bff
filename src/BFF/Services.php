@@ -3,6 +3,7 @@
 namespace BFF;
 
 use BFF\Cache\Memcache;
+use BFF\Db\Adapter\MysqliFactory;
 use BFF\Db\Adapter\PdoFactory;
 use BFF\Queue\Backend\Redis;
 use PDO;
@@ -14,10 +15,11 @@ class Services
     const CONFIG = 'config';
     const QUEUE = 'queue';
     const PDO = 'pdo';
+    const MYSQLI = 'mysqli';
 
     /**
      * @return Config
-     * @throws Exception\RegistryException
+     * @throws Registry\RegistryException
      */
     public static function config() : Config
     {
@@ -32,7 +34,8 @@ class Services
 
     /**
      * @return Memcache
-     * @throws Exception\RegistryException
+     * @throws Config\Exception
+     * @throws Registry\RegistryException
      */
     public static function cache() : Memcache
     {
@@ -80,7 +83,7 @@ class Services
     /**
      * @return PDO
      * @throws Db\Exception
-     * @throws Exception\RegistryException
+     * @throws Registry\RegistryException
      */
     public static function pdo() : PDO
     {
@@ -90,6 +93,23 @@ class Services
             return $obj;
         } else {
             return Registry::get(static::PDO);
+        }
+    }
+
+    /**
+     * @return \mysqli
+     * @throws Config\Exception
+     * @throws Db\Exception
+     * @throws Registry\RegistryException
+     */
+    public static function mysqli() : \mysqli
+    {
+        if (!Registry::isset(static::MYSQLI)) {
+            $obj = MysqliFactory::make(static::config());
+            Registry::set(static::MYSQLI, $obj);
+            return $obj;
+        } else {
+            return Registry::get(static::MYSQLI);
         }
     }
 }
