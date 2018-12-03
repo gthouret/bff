@@ -7,9 +7,15 @@
 
 **TaggedMemcache** - Get and Set with tag sets; Invalidate caches by invalidating tags
 
+**Queue** - Queue implementation (currently only a Redis backend implementation)
+
 **Registry** - A global, labelled, singleton object store
 
 **Services** - Istantiates singleton services into the registry on demand; Simple clean interface for accessing from anywhere
+
+**Export** - Export data (log, csv) to files via Redis queues (Diferent exports are defined in the exporters array)
+
+**Logger** - Wraps Export to format log messages and send to the right exporter
 
 **Text** - Useful text functions
 
