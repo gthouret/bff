@@ -50,7 +50,7 @@ class Services
 
     /**
      * @return Export
-     * @throws Exception\RegistryException
+     * @throws Registry\RegistryException
      */
     public static function export() : Export
     {
@@ -65,8 +65,8 @@ class Services
 
     /**
      * @return Redis
-     * @throws Exception\ConfigException
-     * @throws Exception\RegistryException
+     * @throws Config\Exception
+     * @throws Registry\RegistryException
      */
     public static function queue() : Redis
     {
