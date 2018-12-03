@@ -3,9 +3,13 @@
 
 **Config** - Config management for multiple environments, production is base environment and other environments can override or add to production's config values
 
-**Registry** - A global, labelled object registry
+**Memcache** - Interact with Memcache a store
 
-**Text** - Usefult text functions
+**TaggedMemcache** - Get and Set with tag sets; Invalidate caches by invalidating tags
 
-**Time** - Usefult Time constants and functions
+**Registry** - A global, labelled, singleton object store
+
+**Text** - Useful text functions
+
+**Time** - Useful Time constants and functions
 
