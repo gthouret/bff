@@ -15,3 +15,16 @@
 
 **Time** - Useful Time constants and functions
 
+## Example Usage
+
+```php
+use BFF\Services;
+
+$user = [
+    'name' => 'Joe Bloggs',
+    'email' => 'joe@example.com'
+];
+
+$cache = Services::cache();
+$cache->set('user-joebloggs', $user, Time::ONE_HOUR);
+```
