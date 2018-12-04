@@ -3,6 +3,8 @@
 
 **Config** - Config management for multiple environments, production is base environment and other environments can override or add to production's config values
 
+**Db** - Create custom MySQL connections via MysqliFactory and PdoFactory by passing your config reference or get a default connection via `Services::pdo()` or `Services::mysqli()`
+
 **Memcache** - Interact with Memcache a store
 
 **TaggedMemcache** - Get and Set with tag sets; Invalidate caches by invalidating tags
