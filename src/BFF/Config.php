@@ -20,18 +20,22 @@ class Config implements \ArrayAccess {
         $this->env = $env;
         $this->configDir = $configDir;
 
-        $baseConfig = function() : array {
-            return include $this->configDir . '/' . static::BASE_CONFIG_ENV . '.php';
+        $baseConfigFile = $this->configDir . '/' . static::BASE_CONFIG_ENV . '.php';
+        $envConfigFile = $this->configDir . '/' . $env . '.php';
+
+        $loadConfig = function($file) : array {
+            if (file_exists($file)) {
+                return include $file;
+            } else {
+                throw new \BFF\Exception('Config file not found: ' . $file);
+            }
         };
 
         if (empty($env) || ($env === self::BASE_CONFIG_ENV)) {
-            $this->config = $baseConfig();
+            $this->config = $loadConfig($baseConfigFile);
         } else {
-            $envConfig = function() use ($env) : array {
-                return include $this->configDir . '/' . $env . '.php';
-            };
-
-            $this->config = array_replace_recursive($baseConfig(), $envConfig());
+            $envConfig = $loadConfig($envConfigFile);
+            $this->config = array_replace_recursive($this->config, $envConfig);
         }
     }
 
