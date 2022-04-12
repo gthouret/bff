@@ -3,7 +3,7 @@
 namespace BFF\Test\Cache;
 
 use BFF\Cache\Memcache;
-use BFF\Services;
+use BFF\Service;
 use BFF\Test\TestCase;
 
 class MemcacheTest extends TestCase
@@ -16,7 +16,7 @@ class MemcacheTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = Services::config();
+        $config = Service::config();
         $this->cache = new Memcache($config->get('memcache'));
     }
 

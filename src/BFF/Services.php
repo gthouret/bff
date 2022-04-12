@@ -8,7 +8,7 @@ use BFF\Db\Adapter\PdoFactory;
 use BFF\Queue\Backend\Redis;
 use PDO;
 
-class Services
+class Service
 {
     const CACHE = 'cache';
     const EXPORT = 'export';
@@ -23,9 +23,9 @@ class Services
      */
     public static function config() : Config
     {
-        if (!Registry::isset(Services::CONFIG)) {
+        if (!Registry::isset(Service::CONFIG)) {
             $obj = new Config(getenv('APPLICATION_ENV'));
-            Registry::set(Services::CONFIG, $obj);
+            Registry::set(Service::CONFIG, $obj);
             return $obj;
         } else {
             return Registry::get(static::CONFIG);
@@ -39,9 +39,9 @@ class Services
      */
     public static function cache() : Memcache
     {
-        if (!Registry::isset(Services::CACHE)) {
+        if (!Registry::isset(Service::CACHE)) {
             $obj = new Memcache(static::config()->get('memcache'));
-            Registry::set(Services::CACHE, $obj);
+            Registry::set(Service::CACHE, $obj);
             return $obj;
         } else {
             return Registry::get(static::CACHE);
@@ -54,9 +54,9 @@ class Services
      */
     public static function export() : Export
     {
-        if (!Registry::isset(Services::EXPORT)) {
+        if (!Registry::isset(Service::EXPORT)) {
             $obj = new Export();
-            Registry::set(Services::EXPORT, $obj);
+            Registry::set(Service::EXPORT, $obj);
             return $obj;
         } else {
             return Registry::get(static::EXPORT);

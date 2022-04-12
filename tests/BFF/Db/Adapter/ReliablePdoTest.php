@@ -4,7 +4,7 @@ namespace BFF\Test\Db\Adapter;
 
 use BFF\Db\Adapter\ReliablePdo;
 use BFF\Db\PdoDsn;
-use BFF\Services;
+use BFF\Service;
 use BFF\Test\TestCase;
 use PDO;
 
@@ -12,7 +12,7 @@ class ReliablePdoTest extends TestCase
 {
     public function testConstructPingAndConnectNew()
     {
-        $dbConfig = Services::config()->get('db');
+        $dbConfig = Service::config()->get('db');
         $dsn = PdoDsn::fromConfig($dbConfig);
 
         $options[PDO::ATTR_PERSISTENT] = false;

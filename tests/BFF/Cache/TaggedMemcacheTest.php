@@ -2,7 +2,7 @@
 
 namespace BFF\Test\Cache;
 
-use BFF\Services;
+use BFF\Service;
 use BFF\Cache\TaggedMemcache;
 use BFF\Test\TestCase;
 
@@ -15,7 +15,7 @@ class TaggedMemcacheTest extends TestCase
             'tag2'
         ];
 
-        $taggedCache = new TaggedMemcache(Services::cache(), $tags);
+        $taggedCache = new TaggedMemcache(Service::cache(), $tags);
         $this->assertEquals(40, strlen($taggedCache->taggedItemKey('key1')));
     }
 
@@ -29,7 +29,7 @@ class TaggedMemcacheTest extends TestCase
         $key = 'something';
         $value = 'hello there';
 
-        $taggedCache = new TaggedMemcache(Services::cache(), $tags);
+        $taggedCache = new TaggedMemcache(Service::cache(), $tags);
 
         $this->assertTrue($taggedCache->set($key, $value));
         $this->assertEquals($value, $taggedCache->get($key));
@@ -47,7 +47,7 @@ class TaggedMemcacheTest extends TestCase
         $key = 'something';
         $value = 'hello there';
 
-        $taggedCache = new TaggedMemcache(Services::cache(), $tags);
+        $taggedCache = new TaggedMemcache(Service::cache(), $tags);
 
         $this->assertTrue($taggedCache->set($key, $value));
         $this->assertEquals($value, $taggedCache->get($key));
@@ -58,9 +58,9 @@ class TaggedMemcacheTest extends TestCase
         $key = 'something';
         $value = 'hello there';
 
-        $taggedCache1 = new TaggedMemcache(Services::cache(), ['key1']);
-        $taggedCache2 = new TaggedMemcache(Services::cache(), ['key2']);
-        $taggedCache3 = new TaggedMemcache(Services::cache(), ['key1', 'key2']);
+        $taggedCache1 = new TaggedMemcache(Service::cache(), ['key1']);
+        $taggedCache2 = new TaggedMemcache(Service::cache(), ['key2']);
+        $taggedCache3 = new TaggedMemcache(Service::cache(), ['key1', 'key2']);
 
         $this->assertTrue($taggedCache1->set($key, $value));
         $this->assertEquals($value, $taggedCache1->get($key));

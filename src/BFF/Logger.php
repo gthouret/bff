@@ -29,7 +29,7 @@ class Logger
         ];
 
         try {
-            Services::export()->logApp($data);
+            Service::export()->logApp($data);
         } catch (Exception $e) {
             trigger_error($e->getMessage());
         }

@@ -4,7 +4,7 @@ namespace BFF\Test;
 
 use BFF\Cache\Memcache;
 use BFF\Cache\TagSet;
-use BFF\Services;
+use BFF\Service;
 
 class TagSetTest extends TestCase
 {
@@ -21,7 +21,7 @@ class TagSetTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->cache = Services::cache();
+        $this->cache = Service::cache();
     }
 
     public function testGetTags()
