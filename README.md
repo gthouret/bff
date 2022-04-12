@@ -3,7 +3,7 @@
 
 **Config** - Config management for multiple environments, production is base environment and other environments can override or add to production's config values
 
-**Db** - Create custom MySQL connections via MysqliFactory and PdoFactory by passing your config reference or get a default connection via `Services::pdo()` or `Services::mysqli()`
+**Db** - Create custom MySQL connections via MysqliFactory and PdoFactory by passing your config reference or get a default connection via `Service::pdo()` or `Service::mysqli()`
 
 **Memcache** - Interact with Memcache a store
 
@@ -13,7 +13,7 @@
 
 **Registry** - A global, labelled, singleton object store
 
-**Services** - Istantiates singleton services into the registry on demand; Simple clean interface for accessing from anywhere
+**Service** - Instantiates singleton services into the registry on demand; Simple clean interface for accessing from anywhere
 
 **Export** - Export data (log, csv) to files via Redis queues (Diferent exports are defined in the exporters array)
 
@@ -27,33 +27,33 @@
 
 ### Set an item to cache
 ```php
-use BFF\Services;
+use BFF\Service;
 
 $user = [
     'name' => 'Joe Bloggs',
     'email' => 'joe@example.com'
 ];
 
-$cache = Services::cache();
+$cache = Service::cache();
 $cache->set('user-joebloggs', $user, Time::ONE_HOUR);
 ```
 
 ### Load custom app services
 ```php
 use BFF\Registry;
-use BFF\Services as BffServices;
+use BFF\Service as BffService;
 
 namespace App;
 
-class Services extends BffServices {
+class Service extends BffService {
     const MYSERVICEA = 'myservicea';
     const MYSERVICEB = 'myserviceb';
     
     public function myservicea() : MyServiceA
     {
-        if (!Registry::isset(Services::MYSERVICEA)) {
+        if (!Registry::isset(Service::MYSERVICEA)) {
             $obj = new MyServiceA();
-            Registry::set(Services::MYSERVICEA, $obj);
+            Registry::set(Service::MYSERVICEA, $obj);
             return $obj;
         } else {
             return Registry::get(static::MYSERVICEA);
@@ -62,9 +62,9 @@ class Services extends BffServices {
     
     public function myserviceb() : MyServiceB
     {
-        if (!Registry::isset(Services::MYSERVICEB)) {
+        if (!Registry::isset(Service::MYSERVICEB)) {
             $obj = new MyServiceB();
-            Registry::set(Services::MYSERVICEB, $obj);
+            Registry::set(Service::MYSERVICEB, $obj);
             return $obj;
         } else {
             return Registry::get(static::MYSERVICEB);
@@ -75,6 +75,6 @@ class Services extends BffServices {
 ```php
 namespace App;
 
-$myservicea = Services::myservicea();
+$myservicea = Service::myservicea();
 $myservicea()->someAction();
 ```

@@ -3,7 +3,7 @@
 namespace BFF\Test\Queue\Backend;
 
 use BFF\Queue\Backend\Redis;
-use BFF\Services;
+use BFF\Service;
 use BFF\Test\TestCase;
 
 class RedisTest extends TestCase
@@ -21,7 +21,7 @@ class RedisTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->redis = Services::queue();
+        $this->redis = Service::queue();
     }
 
     public function tearDown()

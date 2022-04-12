@@ -2,14 +2,14 @@
 
 namespace BFF\Db\Adapter;
 
-use BFF\Services;
+use BFF\Service;
 use BFF\Test\TestCase;
 
 class MysqliFactoryTest extends TestCase
 {
     public function testMake()
     {
-        $dbi = MysqliFactory::make(Services::config());
+        $dbi = MysqliFactory::make(Service::config());
         $this->assertInstanceOf('mysqli', $dbi);
     }
 }

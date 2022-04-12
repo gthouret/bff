@@ -3,7 +3,7 @@
 namespace BFF\Model\Mapper;
 
 use BFF\Cache\TaggedMemcache;
-use BFF\Services;
+use BFF\Service;
 use BFF\Cache\Memcache;
 use BFF\Time;
 use Aura\SqlQuery\Common\SelectInterface;
@@ -56,8 +56,8 @@ abstract class Mapper
 
     public function __construct(\PDO $db=null, Memcache $cache=null)
     {
-        $this->db = $db ?? Services::pdo();
-        $this->cache = $cache ?? Services::cache();
+        $this->db = $db ?? Service::pdo();
+        $this->cache = $cache ?? Service::cache();
 
         $this->lastRequestFromCache = false;
         $this->resetQueryParams();

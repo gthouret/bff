@@ -44,8 +44,8 @@ class Export
         // Exporters: exporterName => [queueName, type, filename]
         $this->exporters['logApp'] = ['log_app', self::TYPE_LOG, 'application'];
 
-        $this->config = Services::config();
-        $this->queue = Services::queue();
+        $this->config = Service::config();
+        $this->queue = Service::queue();
     }
 
     public function getExporters() {

@@ -3,7 +3,7 @@
 namespace BFF\Test;
 
 use BFF\Logger;
-use BFF\Services;
+use BFF\Service;
 
 class LoggerTest extends TestCase
 {
@@ -12,7 +12,7 @@ class LoggerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->queue = Services::queue();
+        $this->queue = Service::queue();
         $this->queue->del('log_app');
     }
 
